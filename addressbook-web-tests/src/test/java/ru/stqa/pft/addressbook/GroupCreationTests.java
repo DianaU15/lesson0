@@ -41,7 +41,7 @@ public class GroupCreationTests {
 
   }
 
-  private void relogin() {
+  private void logOut() {
     wd.findElement(By.linkText("Logout")).click();
   }
 
@@ -75,7 +75,7 @@ public class GroupCreationTests {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    relogin();
+    logOut();
     wd.quit();
   }
 
