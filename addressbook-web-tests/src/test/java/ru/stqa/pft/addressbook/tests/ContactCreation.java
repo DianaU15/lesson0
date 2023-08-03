@@ -1,9 +1,10 @@
-package ru.stqa.pft.addressbook;
+package ru.stqa.pft.addressbook.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.*;
+import ru.stqa.pft.addressbook.module.ContactData;
 
 import static org.testng.Assert.fail;
 
