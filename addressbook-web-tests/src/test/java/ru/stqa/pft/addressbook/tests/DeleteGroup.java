@@ -1,8 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.*;
-
-import static org.testng.Assert.fail;
+import org.testng.annotations.Test;
 
 public class DeleteGroup extends TestBase{
 

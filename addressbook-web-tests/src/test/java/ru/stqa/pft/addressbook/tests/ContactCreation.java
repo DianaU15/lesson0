@@ -1,9 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.module.ContactData;
-
-import static org.testng.Assert.fail;
 
 public class ContactCreation extends TestBase{
 
