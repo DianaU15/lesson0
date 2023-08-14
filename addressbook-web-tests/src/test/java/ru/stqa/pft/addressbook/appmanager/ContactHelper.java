@@ -65,7 +65,7 @@ public class ContactHelper extends HelperBase{
 
     public void createContact(ContactData contactData) {
         initContactCreation();
-        fillContactForm(new ContactData("Василий", "Артемович", "Артемьев", "Вася", "321654987", "sdf@ry.net", "16", "March", "2003", "test1"), true);
+        fillContactForm(contactData, true);
         submitContactCreation();
         returnToHomePage();
     }
