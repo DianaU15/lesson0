@@ -73,5 +73,14 @@ public class ContactHelper extends HelperBase{
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
+
+    public boolean isThereThisGroup(String group) {
+        try {
+            new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
+    }
 }
 
