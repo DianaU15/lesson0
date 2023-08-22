@@ -10,20 +10,21 @@ import java.util.List;
 
 public class ContactCreation extends TestBase{
 
-  @Test (enabled = false)
-  public void testContactCreation(){
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact = new ContactData("3", "", "Ортем", "Вася", "321654987", "sdf@ry.net", "16", "March", "2003", "test6");
-    if (!app.getContactHelper().isThereThisGroup(contact.getGroup())) {
+  private void ensurePreconditions(ContactData contact) {
+    if (!app.contact().isThereThisGroup(contact.getGroup())) {
       app.goTo().groupPage();
       app.group().create(new GroupData(contact.getGroup(), contact.getGroup(), contact.getGroup()));
     }
-    app.getContactHelper().initContactCreation();
-    app.getContactHelper().fillContactForm(contact, true);
-    app.getContactHelper().submitContactCreation();
-    app.goTo().goToHomePage();
+  }
 
-    List<ContactData> after = app.getContactHelper().getContactList();
+  @Test
+  public void testContactCreation(){
+    List<ContactData> before = app.contact().list();
+    ContactData contact = new ContactData("3", "", "Ортем", "Вася", "321654987", "sdf@ry.net", "16", "March", "2003", "test6");
+    ensurePreconditions(contact);
+    app.contact().createContact(contact);
+
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size()+1);
 
     //список преобразуем в поток, ищем в нем максимальный с помощью анонимной функции
@@ -33,6 +34,8 @@ public class ContactCreation extends TestBase{
     after.sort(byId);
     Assert.assertEquals(before, after);
   }
+
+
 
 
 }
