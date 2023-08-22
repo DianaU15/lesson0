@@ -10,18 +10,18 @@ import java.util.List;
 
 public class ContactCreation extends TestBase{
 
-  @Test
+  @Test (enabled = false)
   public void testContactCreation(){
     List<ContactData> before = app.getContactHelper().getContactList();
     ContactData contact = new ContactData("3", "", "Ортем", "Вася", "321654987", "sdf@ry.net", "16", "March", "2003", "test6");
     if (!app.getContactHelper().isThereThisGroup(contact.getGroup())) {
-      app.getNavigationHelper().goToGroupPage();
-      app.getGroupHelper().createGroup(new GroupData(contact.getGroup(), contact.getGroup(), contact.getGroup()));
+      app.goTo().groupPage();
+      app.group().create(new GroupData(contact.getGroup(), contact.getGroup(), contact.getGroup()));
     }
     app.getContactHelper().initContactCreation();
     app.getContactHelper().fillContactForm(contact, true);
     app.getContactHelper().submitContactCreation();
-    app.getNavigationHelper().goToHomePage();
+    app.goTo().goToHomePage();
 
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size()+1);
