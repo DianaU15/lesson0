@@ -11,7 +11,7 @@ import java.util.List;
 public class ContactCreation extends TestBase{
 
   private void ensurePreconditions(ContactData contact) {
-    if (!app.contact().isThereThisGroup(contact.getGroup())) {
+    if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup()) ) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName(contact.getGroup()));
     }

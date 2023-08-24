@@ -15,7 +15,7 @@ public class ContactModification extends TestBase{
     private static void ensurePreconditions() {
         if (!app.contact().isThereAContact()) {
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
-            if (!app.contact().isThereThisGroup(contact.getGroup())) {
+            if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup())) {
                 app.goTo().groupPage();
                 app.group().create(new GroupData().withName(contact.getGroup()));
             }
