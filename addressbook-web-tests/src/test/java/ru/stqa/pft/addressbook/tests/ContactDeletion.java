@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.module.ContactData;
 import ru.stqa.pft.addressbook.module.GroupData;
 
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletion extends TestBase{
 
@@ -22,33 +23,33 @@ public class ContactDeletion extends TestBase{
         }
     }
 
-    @Test
+    @Test (enabled = false)
     public void testContactDeletionFromHome() {
         ensurePreconditions();
-        List<ContactData> before = app.contact().list();
-        int index = 1;
-        app.contact().deleteFromHome(index);
+        Set<ContactData> before = app.contact().all();
+        ContactData deletedGroup = before.iterator().next();
+        app.contact().deleteFromHome(deletedGroup);
         app.goTo().goToHomePage();
 
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(index);
+        before.remove(deletedGroup);
         Assert.assertEquals(after, before);
     }
 
-    @Test (enabled = false)
+    @Test
     public void testContactDeletionFromEdit() {
         ensurePreconditions();
-        List<ContactData> before = app.contact().list();
-        int index = before.size() - 1;
-        app.contact().deleteFromEdit(index);
+        Set<ContactData> before = app.contact().all();
+        ContactData deletedGroup = before.iterator().next();
+        app.contact().deleteFromEdit(deletedGroup);
         app.goTo().goToHomePage();
 
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(index);
+        before.remove(deletedGroup);
         Assert.assertEquals(after, before);
     }
 

@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.module.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase{
 
@@ -47,6 +49,11 @@ public class ContactHelper extends HelperBase{
 
     }
 
+    public void initContactModificationById(int id) {
+        click(By.xpath("//a[@href='edit.php?id=" + id + "']"));
+
+    }
+
     public void submitContactModification() {
         click(By.name("update"));
     }
@@ -58,6 +65,10 @@ public class ContactHelper extends HelperBase{
     public void selectContact(int index) {
         //click(By.name("selected[]"));
         wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    private void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     public void deleteSelectedContact() {
@@ -104,18 +115,46 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements){
+            String lastname = element.findElement(By.xpath("td[2]")).getText();
+            String firstname = element.findElement(By.xpath("td[3]")).getText();
+            String address = element.findElement(By.xpath("td[4]")).getText();
+            String mail = element.findElement(By.xpath("td[5]")).getText();
+            String phone = element.findElement(By.xpath("td[6]")).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withAddress(address).withMail(mail).withPhone(phone);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
     public void deleteFromHome(int index) {
         selectContact(index);
         deleteSelectedContact();
         accept();
     }
+
+    public void deleteFromHome(ContactData contact) {
+        selectContactById(contact.getId());
+        deleteSelectedContact();
+        accept();
+    }
+
     public void deleteFromEdit(int index) {
-        initContactModification(index);
+        initContactModificationById(index);
         deleteSelectedContact();
     }
 
-    public void modify(int index, ContactData contact) {
-        initContactModification(index);
+    public void deleteFromEdit(ContactData contact) {
+        initContactModificationById(contact.getId());
+        deleteSelectedContact();
+    }
+
+    public void modify(ContactData deletedGroup, ContactData contact) {
+        initContactModificationById(deletedGroup.getId());
         fillContactForm(contact, false);
         submitContactModification();
         returnToHomePage();
