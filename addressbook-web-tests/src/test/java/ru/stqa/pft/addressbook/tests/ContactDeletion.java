@@ -13,12 +13,12 @@ public class ContactDeletion extends TestBase{
     @BeforeMethod
     private static void ensurePreconditions() {
         if (!app.contact().isThereAContact()) {
-            ContactData contactData = new ContactData("Василий", "Артемович", "Артемьев", "Вася", "321654987", "sdf@ry.net", "16", "March", "2003", null);
-            if (!app.contact().isThereThisGroup(contactData.getGroup())) {
+            ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
+            if (!app.contact().isThereThisGroup(contact.getGroup())) {
                 app.goTo().groupPage();
-                app.group().create(new GroupData(contactData.getGroup(), contactData.getGroup(), contactData.getGroup()));
+                app.group().create(new GroupData().withName(contact.getGroup()));
             }
-            app.contact().createContact(contactData);
+            app.contact().createContact(contact);
         }
     }
 

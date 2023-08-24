@@ -27,9 +27,6 @@ public class ContactHelper extends HelperBase{
         type(By.name("nickname"), contactData.getNickname());
         type(By.name("home"), contactData.getPhone());
         type(By.name("email"), contactData.getMail());
-        selectText("bday", contactData.getBday());
-        selectText("bmonth", contactData.getBmonth());
-        type(By.name("byear"), contactData.getByear());
 
         if (creation) {
             if (contactData.getGroup() != null) {
@@ -98,10 +95,10 @@ public class ContactHelper extends HelperBase{
             String lastname = element.findElement(By.xpath("td[2]")).getText();
             String firstname = element.findElement(By.xpath("td[3]")).getText();
             String address = element.findElement(By.xpath("td[4]")).getText();
-            String email = element.findElement(By.xpath("td[5]")).getText();
+            String mail = element.findElement(By.xpath("td[5]")).getText();
             String phone = element.findElement(By.xpath("td[6]")).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, firstname, null, lastname, null, address, phone, email, null, null, null, null);
+            ContactData contact = new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withAddress(address).withMail(mail).withPhone(phone);
             contacts.add(contact);
         }
         return contacts;
