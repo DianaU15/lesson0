@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.module.ContactData;
+import ru.stqa.pft.addressbook.module.Contacts;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -115,8 +116,24 @@ public class ContactHelper extends HelperBase{
         return contacts;
     }
 
-    public Set<ContactData> all() {
+    public Set<ContactData> allOld() {
         Set<ContactData> contacts = new HashSet<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements){
+            String lastname = element.findElement(By.xpath("td[2]")).getText();
+            String firstname = element.findElement(By.xpath("td[3]")).getText();
+            String address = element.findElement(By.xpath("td[4]")).getText();
+            String mail = element.findElement(By.xpath("td[5]")).getText();
+            String phone = element.findElement(By.xpath("td[6]")).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData().withId(id).withLastname(lastname).withFirstname(firstname).withAddress(address).withMail(mail).withPhone(phone);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements){
             String lastname = element.findElement(By.xpath("td[2]")).getText();
@@ -153,8 +170,8 @@ public class ContactHelper extends HelperBase{
         deleteSelectedContact();
     }
 
-    public void modify(ContactData deletedGroup, ContactData contact) {
-        initContactModificationById(deletedGroup.getId());
+    public void modify(ContactData deletedContact, ContactData contact) {
+        initContactModificationById(deletedContact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         returnToHomePage();
