@@ -18,6 +18,7 @@ public class ContactModification extends TestBase{
 
     @BeforeMethod
     private static void ensurePreconditions() {
+        app.goTo().goToHomePage();
         if (!app.contact().isThereAContact()) {
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
             if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup())) {
@@ -32,6 +33,7 @@ public class ContactModification extends TestBase{
     public void testContactModification(){
         ensurePreconditions();
         Contacts before = app.contact().all();
+        System.out.println(before.size());
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Fhntv").withLastname("fylhttd");
         app.contact().modify(modifiedContact, contact);

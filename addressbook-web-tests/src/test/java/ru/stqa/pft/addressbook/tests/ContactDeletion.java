@@ -17,6 +17,7 @@ public class ContactDeletion extends TestBase{
 
     @BeforeMethod
     private static void ensurePreconditions() {
+        app.goTo().goToHomePage();
         if (!app.contact().isThereAContact()) {
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
             if (!app.contact().isThereThisGroup(contact.getGroup())) {

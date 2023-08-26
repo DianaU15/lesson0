@@ -24,6 +24,7 @@ public class ContactCreation extends TestBase{
 
   @Test
   public void testContactCreation(){
+    app.goTo().goToHomePage();
     Contacts before = app.contact().all();
     ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
     ensurePreconditions(contact);
