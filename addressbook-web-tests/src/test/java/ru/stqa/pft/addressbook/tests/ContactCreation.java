@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.module.ContactData;
 import ru.stqa.pft.addressbook.module.Contacts;
 import ru.stqa.pft.addressbook.module.GroupData;
 
+import java.io.File;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -26,7 +27,8 @@ public class ContactCreation extends TestBase{
   public void testContactCreation(){
     app.goTo().goToHomePage();
     Contacts before = app.contact().all();
-    ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
+    File photo = new File("src/test/resources/image.jpg");
+    ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd").withPhoto(photo);
     ensurePreconditions(contact);
     app.contact().createContact(contact);
 
@@ -42,8 +44,5 @@ public class ContactCreation extends TestBase{
     //Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
   }
-
-
-
 
 }

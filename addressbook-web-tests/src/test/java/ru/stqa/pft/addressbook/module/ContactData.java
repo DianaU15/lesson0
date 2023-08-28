@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.module;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -22,6 +23,7 @@ public class ContactData {
     private String bmonth;
     private String byear;
     private String group;
+    private File photo;
 
 
 
@@ -58,7 +60,7 @@ public class ContactData {
         return this;
     }
 
-    public ContactData setwithNickname(String nickname) {
+    public ContactData withNickname(String nickname) {
         this.nickname = nickname;
         return this;
     }
@@ -131,6 +133,11 @@ public class ContactData {
 
     public ContactData withGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
         return this;
     }
 
@@ -207,6 +214,10 @@ public class ContactData {
     }
 
     public String getGroup() { return group; }
+
+    public File getPhoto() {
+        return photo;
+    }
 
     @Override
     public String toString() {
