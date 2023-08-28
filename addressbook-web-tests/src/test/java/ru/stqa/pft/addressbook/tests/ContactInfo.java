@@ -11,13 +11,15 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class ContactPhones extends TestBase{
+public class ContactInfo extends TestBase{
 
     @BeforeMethod
     private static void ensurePreconditions() {
         if (!app.contact().isThereAContact()) {
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd")
-                    .withWorkPhone("1(23)").withMobilePhone("3 45").withHomePhone2("45-6").withHomePhone("383838");
+                    .withWorkPhone("1(23)").withMobilePhone("3 45").withHomePhone2("45-6").withHomePhone("383838")
+                    .withEmail("asd").withEmail2("dfg").withEmail3("ryty")
+                    .withAddress("FFFFFFFFlhtc");
             if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup())) {
                 app.goTo().groupPage();
                 app.group().create(new GroupData().withName(contact.getGroup()));
@@ -26,7 +28,7 @@ public class ContactPhones extends TestBase{
         }
     }
     @Test
-    public void testContactPhones() {
+    public void testContactInfoFromHome() {
         ensurePreconditions();
         app.goTo().goToHomePage();
         ContactData contact = app.contact().all().iterator().next();
@@ -34,13 +36,22 @@ public class ContactPhones extends TestBase{
 
         //assertThat(cleaned(contact.getAllPhones()), equalTo(mergePhones(contactInfoFromEditForm)));
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact.getAddress().replaceAll("\\s", ""), equalTo(contactInfoFromEditForm.getAddress().replaceAll("\\s", "")));
+
+    }
+
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s)-> !s.equals(""))
+                .collect(Collectors.joining("\n"));
     }
 
     private String mergePhones(ContactData contact) {
         //return cleaned(contact.getHomePhone())+cleaned(contact.getMobilePhone())+cleaned(contact.getWorkPhone());
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getHomePhone2())
                 .stream().filter((s)-> !s.equals(""))
-                .map(ContactPhones::cleaned)
+                .map(ContactInfo::cleaned)
                 .collect(Collectors.joining("\n"));
     }
 
