@@ -60,6 +60,6 @@ public class ContactInfo extends TestBase{
     }
 
     public static String cleanedAddress(String address) {
-        return address.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
+        return  address.replaceAll("^\\s+", "").replaceAll("\\s+$", "");
     }
 }
