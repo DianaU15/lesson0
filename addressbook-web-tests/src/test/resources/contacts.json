@@ -1,0 +1,38 @@
+[
+  {
+    "firstname": "Илья 1.0",
+    "middlename": "Владиславович 2.0",
+    "lastname": "Давидов 2.0",
+    "nickname": "юху 2.0",
+    "address": "Flhtc Flhtc Flhtc.0",
+    "homePhone": "8965896 0",
+    "mobilePhone": "8965896 2.0",
+    "homePhone2": "35453 2.0",
+    "email2": "Давидов 2.0",
+    "email3": "dfbfbf 2.0"
+  },
+  {
+    "firstname": "Илья 1.1",
+    "middlename": "Владиславович 2.1",
+    "lastname": "Давидов 2.1",
+    "nickname": "юху 2.1",
+    "address": "Flhtc Flhtc Flhtc.1",
+    "homePhone": "8965896 1",
+    "mobilePhone": "8965896 2.1",
+    "homePhone2": "35453 2.1",
+    "email2": "Давидов 2.1",
+    "email3": "dfbfbf 2.1"
+  },
+  {
+    "firstname": "Илья 1.2",
+    "middlename": "Владиславович 2.2",
+    "lastname": "Давидов 2.2",
+    "nickname": "юху 2.2",
+    "address": "Flhtc Flhtc Flhtc.2",
+    "homePhone": "8965896 2",
+    "mobilePhone": "8965896 2.2",
+    "homePhone2": "35453 2.2",
+    "email2": "Давидов 2.2",
+    "email3": "dfbfbf 2.2"
+  }
+]
