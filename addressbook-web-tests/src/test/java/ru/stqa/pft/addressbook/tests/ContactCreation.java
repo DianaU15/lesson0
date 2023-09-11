@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.module.ContactData;
@@ -14,10 +13,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -70,7 +67,7 @@ public class ContactCreation extends TestBase{
     Contacts before = app.contact().all();
     File photo = new File("src/test/resources/image.jpg");
     ensurePreconditions(contact);
-    app.contact().createContact(contact);
+    app.contact().createContact(contact.withPhoto(photo));
 
     Contacts after = app.contact().all();
     //Assert.assertEquals(after.size(), before.size()+1);
