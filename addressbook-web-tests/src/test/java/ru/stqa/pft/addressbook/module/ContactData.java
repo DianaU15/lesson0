@@ -3,49 +3,76 @@ package ru.stqa.pft.addressbook.module;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 import java.io.File;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name="addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
     @Expose
+    @Column(name = "firstname")
     private String firstname;
     @Expose
+    @Transient
     private String middlename;
     @Expose
+    @Column(name = "lastname")
     private String lastname;
     @Expose
+    @Transient
     private String nickname;
     @Expose
+    @Transient
     private String address;
     @Expose
+    @Column(name = "home")
+    //@Type(type= "text")
     private String homePhone;
     @Expose
+    @Column(name = "mobile")
     private String mobilePhone;
+    @Column(name = "work")
     private String workPhone;
     @Expose
+    @Transient
     private String homePhone2;
-    @Expose
+
+    @Transient
     private String allPhones;
+    @Expose
+    @Transient
     private String email;
     @Expose
+    @Transient
     private String email2;
     @Expose
+    @Transient
     private String email3;
+    @Transient
     private String allEmail;
     @Expose
+    @Transient
     private String bday;
     @Expose
+    @Transient
     private String bmonth;
     @Expose
+    @Transient
     private String byear;
     @Expose
+    @Transient
     private String group;
     @Expose
-    private File photo;
+    @Column(name = "photo")
+    private String photo;
 
 
 
@@ -159,7 +186,7 @@ public class ContactData {
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -238,7 +265,7 @@ public class ContactData {
     public String getGroup() { return group; }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     @Override
