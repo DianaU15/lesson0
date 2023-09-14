@@ -21,16 +21,16 @@ public class ContactData {
     @Column(name = "firstname")
     private String firstname;
     @Expose
-    @Transient
+    @Column(name = "middlename")
     private String middlename;
     @Expose
     @Column(name = "lastname")
     private String lastname;
     @Expose
-    @Transient
+    @Column(name = "nickname")
     private String nickname;
     @Expose
-    @Transient
+    @Column(name = "address")
     private String address;
     @Expose
     @Column(name = "home")
@@ -44,17 +44,16 @@ public class ContactData {
     @Expose
     @Transient
     private String homePhone2;
-
     @Transient
     private String allPhones;
     @Expose
-    @Transient
+    @Column(name = "email")
     private String email;
     @Expose
-    @Transient
+    @Column(name = "email2")
     private String email2;
     @Expose
-    @Transient
+    @Column(name = "email3")
     private String email3;
     @Transient
     private String allEmail;
@@ -71,22 +70,33 @@ public class ContactData {
     @Transient
     private String group;
     @Expose
-    @Column(name = "photo")
+    @Transient
     private String photo;
-
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactData that = (ContactData) o;
-        return Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+        return id == that.id && strEqual(firstname, that.firstname) && strEqual(middlename, that.middlename) && strEqual(lastname, that.lastname)
+                && strEqual(nickname, that.nickname) && strEqual(address, that.address) && strEqual(homePhone, that.homePhone)
+                && strEqual(mobilePhone, that.mobilePhone) && strEqual(workPhone, that.workPhone) && strEqual(email, that.email)
+                && strEqual(email2, that.email2) && strEqual(email3, that.email3);
+    }
+
+    public boolean strEqual(String s1, String s2){
+        if (s1 == null) {
+            s1 = "";
+        }
+        if (s2 == null) {
+            s2 = "";
+        }
+        return Objects.equals(s1, s2);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstname, lastname);
+        return Objects.hash(id, firstname, middlename, lastname, nickname, address, homePhone, mobilePhone, workPhone, email, email2, email3);
     }
 
     public ContactData withId(int id) {
@@ -273,8 +283,16 @@ public class ContactData {
         return "ContactData{" +
                 "id=" + id +
                 ", firstname='" + firstname + '\'' +
+                ", middlename='" + middlename + '\'' +
                 ", lastname='" + lastname + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", address='" + address + '\'' +
+                ", homePhone='" + homePhone + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                ", workPhone='" + workPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", email2='" + email2 + '\'' +
+                ", email3='" + email3 + '\'' +
                 '}';
     }
-
 }

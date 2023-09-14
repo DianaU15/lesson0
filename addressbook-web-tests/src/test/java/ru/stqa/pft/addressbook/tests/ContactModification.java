@@ -18,10 +18,10 @@ public class ContactModification extends TestBase{
 
     @BeforeMethod
     private static void ensurePreconditions() {
-        app.goTo().goToHomePage();
-        if (!app.contact().isThereAContact()) {
+        if (app.db().contacts().size() == 0) {
+            app.goTo().goToHomePage();
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
-            if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup())) {
+            if (contact.getGroup() != null && !app.db().groups().contains(contact.getGroup()) ) {
                 app.goTo().groupPage();
                 app.group().create(new GroupData().withName(contact.getGroup()));
             }
@@ -32,13 +32,13 @@ public class ContactModification extends TestBase{
     @Test
     public void testContactModification(){
         ensurePreconditions();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         System.out.println(before.size());
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Fhntv").withLastname("fylhttd");
         app.contact().modify(modifiedContact, contact);
 
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size());
 
         //список преобразуем в поток, ищем в нем максимальный с помощью анонимной функции

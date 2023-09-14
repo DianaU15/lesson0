@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +56,7 @@ public class ContactCreation extends TestBase{
   }
 
   private void ensurePreconditions(ContactData contact) {
-    if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup()) ) {
+    if (contact.getGroup() != null && !app.db().groups().contains(contact.getGroup()) ) {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName(contact.getGroup()));
     }
@@ -64,12 +65,14 @@ public class ContactCreation extends TestBase{
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact){
     app.goTo().goToHomePage();
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
+    System.out.println(before);
     File photo = new File("src/test/resources/image.jpg");
     ensurePreconditions(contact);
     app.contact().createContact(contact.withPhoto(photo));
 
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
+    System.out.println(after);
     //Assert.assertEquals(after.size(), before.size()+1);
 
     //contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt());
@@ -81,5 +84,6 @@ public class ContactCreation extends TestBase{
     //Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
   }
+
 
 }
