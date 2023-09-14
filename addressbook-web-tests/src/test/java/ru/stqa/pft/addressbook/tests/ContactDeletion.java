@@ -40,6 +40,8 @@ public class ContactDeletion extends TestBase{
         Assert.assertEquals(after.size(), before.size() - 1);
 
         assertThat(after, equalTo(before.without(deletedContact)));
+
+        verifyInGroupListInUI();
     }
 
     @Test
@@ -54,6 +56,8 @@ public class ContactDeletion extends TestBase{
         Assert.assertEquals(after.size(), before.size() - 1);
 
         assertThat(after, equalTo(before.without(deletedContact)));
+
+        //verifyInGroupListInUI();
     }
 
 

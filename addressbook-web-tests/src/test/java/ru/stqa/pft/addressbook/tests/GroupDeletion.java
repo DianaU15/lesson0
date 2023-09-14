@@ -33,6 +33,8 @@ public class GroupDeletion extends TestBase{
     Groups after = app.db().groups();
     //before.remove(deletedGroup);
     assertThat(after, equalTo(before.without(deletedGroup)));
+
+    verifyInGroupListInUI();
   }
 
 }

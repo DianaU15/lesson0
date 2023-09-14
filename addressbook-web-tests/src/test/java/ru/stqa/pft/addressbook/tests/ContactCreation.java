@@ -83,6 +83,8 @@ public class ContactCreation extends TestBase{
     after.sort(byId);*/
     //Assert.assertEquals(before, after);
     assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g)-> g.getId()).max().getAsInt()))));
+
+    //verifyInGroupListInUI();
   }
 
 
