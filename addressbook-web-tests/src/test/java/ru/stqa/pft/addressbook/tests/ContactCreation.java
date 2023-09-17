@@ -77,7 +77,7 @@ public class ContactCreation extends TestBase{
     System.out.println(before);
     File photo = new File("src/test/resources/image.jpg");
     ensurePreconditions(contact);
-    app.contact().createContact(contact.withPhoto(photo).inGroup(groups.iterator().next()));
+    app.contact().createContact(contact.withPhoto(photo).inGroup(app.db().groups().iterator().next()));
 
     Contacts after = app.db().contacts();
     System.out.println(after);
