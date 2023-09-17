@@ -41,16 +41,16 @@ public class ContactInfo extends TestBase{
 
     }
 
-    private String mergeEmails(ContactData contact) {
+    public static String mergeEmails(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s)-> !s.equals(""))
                 .collect(Collectors.joining("\n"));
     }
 
-    private String mergePhones(ContactData contact) {
+    public static String mergePhones(ContactData contact) {
         //return cleaned(contact.getHomePhone())+cleaned(contact.getMobilePhone())+cleaned(contact.getWorkPhone());
         return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(), contact.getHomePhone2())
-                .stream().filter((s)-> !s.equals(""))
+                .stream().filter((s) -> !s.equals(""))
                 .map(ContactInfo::cleanedPhone)
                 .collect(Collectors.joining("\n"));
     }
