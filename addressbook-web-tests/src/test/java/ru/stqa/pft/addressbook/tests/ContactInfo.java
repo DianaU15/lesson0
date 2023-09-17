@@ -20,11 +20,11 @@ public class ContactInfo extends TestBase{
                     .withWorkPhone("1(23)").withMobilePhone("3 45").withHomePhone2("45-6").withHomePhone("383838")
                     .withEmail("asd").withEmail2("dfg").withEmail3("ryty")
                     .withAddress("FFFFFFFFlhtc");
-            if (contact.getGroup() != null && !app.contact().isThereThisGroup(contact.getGroup())) {
+            if (app.db().groups().isEmpty()) {
                 app.goTo().groupPage();
-                app.group().create(new GroupData().withName(contact.getGroup()));
+                app.group().create(new GroupData().withName("GroupNew"));
             }
-            app.contact().createContact(contact);
+            app.contact().createContact(contact.inGroup(app.db().groups().iterator().next()));
         }
     }
     @Test

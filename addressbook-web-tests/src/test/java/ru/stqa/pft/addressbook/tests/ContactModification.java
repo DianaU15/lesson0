@@ -17,11 +17,11 @@ public class ContactModification extends TestBase{
         if (app.db().contacts().size() == 0) {
             app.goTo().goToHomePage();
             ContactData contact = new ContactData().withFirstname("Fhntv").withLastname("fylhttd");
-            if (contact.getGroup() != null && !app.db().groups().contains(contact.getGroup()) ) {
+            if (app.db().groups().isEmpty()) {
                 app.goTo().groupPage();
-                app.group().create(new GroupData().withName(contact.getGroup()));
+                app.group().create(new GroupData().withName("GroupNew"));
             }
-            app.contact().createContact(contact);
+            app.contact().createContact(contact.inGroup(app.db().groups().iterator().next()));
         }
     }
 

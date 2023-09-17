@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.module.ContactData;
 import ru.stqa.pft.addressbook.module.Contacts;
 import ru.stqa.pft.addressbook.module.GroupData;
+import ru.stqa.pft.addressbook.module.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -54,21 +55,29 @@ public class ContactCreation extends TestBase{
     }
   }
 
+//  private void ensurePreconditions(ContactData contact) {
+//    if (contact.getGroup() != null && !app.db().groups().contains(contact.getGroup()) ) {
+//      app.goTo().groupPage();
+//      app.group().create(new GroupData().withName(contact.getGroup()));
+//    }
+//  }
+
   private void ensurePreconditions(ContactData contact) {
-    if (contact.getGroup() != null && !app.db().groups().contains(contact.getGroup()) ) {
+    if (app.db().groups().isEmpty()) {
       app.goTo().groupPage();
-      app.group().create(new GroupData().withName(contact.getGroup()));
+      app.group().create(new GroupData().withName("GroupNew"));
     }
   }
 
   @Test (dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact){
+    Groups groups = app.db().groups();
     app.goTo().goToHomePage();
     Contacts before = app.db().contacts();
     System.out.println(before);
     File photo = new File("src/test/resources/image.jpg");
     ensurePreconditions(contact);
-    app.contact().createContact(contact.withPhoto(photo));
+    app.contact().createContact(contact.withPhoto(photo).inGroup(groups.iterator().next()));
 
     Contacts after = app.db().contacts();
     System.out.println(after);
