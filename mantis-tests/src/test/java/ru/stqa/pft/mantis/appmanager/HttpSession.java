@@ -1,5 +1,7 @@
 package ru.stqa.pft.mantis.appmanager;
 
+
+
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -8,6 +10,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
+
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -28,12 +31,13 @@ public class HttpSession {
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("password", password));
-            params.add(new BasicNameValuePair("secure session", "on"));
+            params.add(new BasicNameValuePair("secure_session", "on"));
             params.add(new BasicNameValuePair("return", "index.php"));
             post.setEntity(new UrlEncodedFormEntity(params));
             CloseableHttpResponse response = httpclient.execute(post);
             String body = geTextFrom(response);
-            return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+            //System.out.println(body);
+            return body.contains(String.format("<span id=\"logged-in-user\">%s</span>", username));
         }
 
     private String geTextFrom(CloseableHttpResponse response) throws IOException {
@@ -48,6 +52,8 @@ public class HttpSession {
         HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/index.php");
         CloseableHttpResponse response = httpclient.execute(get);
         String body = geTextFrom(response);
-        return body.contains(String.format("<span class=\"italic\">%s</span>", username));
+        //System.out.println(body);
+        return body.contains(String.format("<span id=\"logged-in-user\">%s</span>", username));
     }
 }
+//administrator

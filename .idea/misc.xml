@@ -5,7 +5,7 @@
     <file type="web" url="file://$PROJECT_DIR$/addressbook-web-tests" />
     <file type="web" url="file://$PROJECT_DIR$/sandbox" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="azul-15" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="azul-15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
