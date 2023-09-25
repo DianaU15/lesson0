@@ -8,9 +8,10 @@ dependencies {
     implementation 'org.testng:testng:7.8.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.11.0'
     implementation 'org.hamcrest:hamcrest:2.2'
-    implementation 'org.apache.httpcomponents:httpcomponents-client:4.5.14'
-    implementation 'org.netbeans.external:org-apache-commons-httpclient:RELEASE190'
+    //implementation 'org.apache.httpcomponents:httpcomponents-client:4.5.14'
+    //implementation 'org.netbeans.external:org-apache-commons-httpclient:RELEASE190'
     implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.14'
+    implementation 'commons-net:commons-net:3.9.0'
 
 }
 
