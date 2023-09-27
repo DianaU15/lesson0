@@ -6,7 +6,6 @@ public class Issue {
     private String summary;
     private String description;
     private Project project;
-
     private String name;
 
     public int getId() {
@@ -49,4 +48,5 @@ public class Issue {
         this.name = name;
         return this;
     }
+
 }

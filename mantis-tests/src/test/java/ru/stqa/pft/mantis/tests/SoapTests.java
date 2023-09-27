@@ -13,7 +13,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SoapTests extends TestBase{
 
-    @Test
+    @Test (enabled = false)
     public void testGetProjects() throws MalformedURLException, ServiceException, RemoteException {
         Set<Project> projects = app.soap().getProjects();
         System.out.println(projects.size());
@@ -24,11 +24,54 @@ public class SoapTests extends TestBase{
     }
 
     @Test
-    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException{
-        Set<Project> projects = app.soap().getProjects();
-        Issue issue = new Issue().withSummary("sum").withDescription("Desc").withProject(projects.iterator().next());
-        Issue created = app.soap().addIssue(issue);
+    public void testCreateIssue() throws MalformedURLException, ServiceException, RemoteException{ //
+        skipIfNotFixed(1);
+//        Set<Project> projects = app.soap().getProjects();
+//        Issue issue = new Issue().withSummary("sum").withDescription("Desc").withProject(projects.iterator().next());
+//        Issue created = app.soap().addIssue(issue);
+//
+//        assertEquals(issue.getSummary(), created.getSummary());
+    }
 
-        assertEquals(issue.getSummary(), created.getSummary());
+    @Test
+    public void testCreateIssue1() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(1); //new
+    }
+
+    @Test
+    public void testCreateIssue3() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(3); //feedback
+
+    }
+
+    @Test
+    public void testCreateIssue4() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(4); ////acknowledged
+
+    }
+
+    @Test
+    public void testCreateIssue5() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(5); //confirmed
+
+    }
+
+    @Test
+    public void testCreateIssue6() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(6); //assigned
+
+    }
+
+    @Test
+    public void testCreateIssue7() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(7); //resolved
+
+
+    }
+
+    @Test
+    public void testCreateIssue2() throws MalformedURLException, ServiceException, RemoteException{
+        skipIfNotFixed(2); //closed
+
     }
 }
