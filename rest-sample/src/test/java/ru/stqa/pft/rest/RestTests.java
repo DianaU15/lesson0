@@ -15,7 +15,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestTests {
+public class RestTests{
 
     @Test
     public void testCreateIssue() throws IOException, URISyntaxException {
@@ -38,18 +38,10 @@ public class RestTests {
         return parsed.getAsJsonObject().get("issue_id").getAsInt();
     }
 
-    private String postRequest(Issue newIssue) throws IOException {
-        String s = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json")
-                        .setHeader("Content-Type", "application/x-www-form-urlencoded")
-                        .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
-                                new BasicNameValuePair("description", newIssue.getDescription())))
-                .returnContent().asString();
-        return s;
-    }
-
     private Executor getExecutor() {
         return Executor.newInstance().auth("65c38fae4d0f34a3daccb854fc345a2d", "");
     }
+
     public Set<Issue> getIssues() throws IOException, URISyntaxException {
         String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues.json?limit=100"))
                 .returnContent().asString();
