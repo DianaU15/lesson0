@@ -25,7 +25,7 @@ public class TestBase {
     Logger logger = LoggerFactory.getLogger(TestBase.class);
 
     protected static final ApplicationManager app =
-            new ApplicationManager(System.getProperty("browser", Browser.CHROME.browserName())); //static - глобальная переменная
+            new ApplicationManager(System.getProperty("browser", Browser.FIREFOX.browserName())); //static - глобальная переменная
 
     @BeforeSuite
     public void setUp() throws Exception {
