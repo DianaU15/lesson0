@@ -81,16 +81,16 @@ public class ContactDataGenerator {
     private List<ContactData> generateContacts(int count) {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++){
-            contacts.add(new ContactData().withFirstname(String.format("Илья 1.%s", i))
-                    .withLastname(String.format("Давидов %s", i))
+            contacts.add(new ContactData().withFirstname(String.format("sdfsdfs 1.%s", i))
+                    .withLastname(String.format("sdfsdfs %s", i))
                     .withMobilePhone(String.format("89658962%s", i))
                     .withWorkPhone(String.format("55555555552%s", i))
-                    .withMiddlename(String.format("Владиславович 2.%s", i))
-                    .withNickname(String.format("юху 2.%s", i))
+                    .withMiddlename(String.format("sdfsdfs 2.%s", i))
+                    .withNickname(String.format("sdfsdfs 2.%s", i))
                     .withHomePhone2(String.format("354532%s", i))
                     .withAddress(String.format("Flhtc Flhtc Flhtc.%s", i))
                     .withEmail(String.format("sdfsdfs 2.%s", i))
-                    .withEmail2(String.format("Давидов 2.%s", i))
+                    .withEmail2(String.format("sdfsdfs 2.%s", i))
                     .withEmail3(String.format("dfbfbf 2.%s", i))
                     .withHomePhone(String.format("8965896%s", i))
                     //.withGroup(String.format("group %s", i))
