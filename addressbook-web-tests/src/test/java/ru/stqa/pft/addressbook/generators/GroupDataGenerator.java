@@ -35,7 +35,7 @@ public class GroupDataGenerator {
             jCommander.usage();
             return;
         }
-        generator.run();
+        //generator.run();
     }
 
     private void run() throws IOException {
