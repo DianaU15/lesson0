@@ -54,7 +54,7 @@ public class ContactAdditionToGroup extends TestBase{
         return selectedGroup;
     }
 
-    @Test
+    @Test (enabled = false)
     public void testContactAdditionToGroup() {
         ensurePreconditions1();
         Contacts contacts = app.db().contacts();

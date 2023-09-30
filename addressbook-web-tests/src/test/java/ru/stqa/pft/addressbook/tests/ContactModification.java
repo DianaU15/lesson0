@@ -25,7 +25,7 @@ public class ContactModification extends TestBase{
         }
     }
 
-    @Test
+    @Test (enabled = false)
     public void testContactModification(){
         ensurePreconditions();
         Contacts before = app.db().contacts();

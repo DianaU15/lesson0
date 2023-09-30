@@ -22,24 +22,24 @@ dependencies {
     implementation "com.sun.xml.ws:jaxws-rt:4.0.1"
 }
 
-//test {
-//    useTestNG()
-//}
-
-task testGroups(type: Test) {        //this code was first
-    useTestNG {
-        suites 'src/test/resources/testng-groups.xml'
-    }
-    if (project.hasProperty('browser')){
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')){
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('verifyUI')){
-        systemProperty 'verifyUI', "${verifyUI}"
-    }
+test {
+    useTestNG()
 }
+
+//task testGroups(type: Test) {        //this code was first
+//    useTestNG {
+//        suites 'src/test/resources/testng-groups.xml'
+//    }
+//    if (project.hasProperty('browser')){
+//        systemProperty 'browser', "${browser}"
+//    }
+//    if (project.hasProperty('target')){
+//        systemProperty 'target', "${target}"
+//    }
+//    if (project.hasProperty('verifyUI')){
+//        systemProperty 'verifyUI', "${verifyUI}"
+//    }
+//}
 //
 //task testContacts(type: Test) {
 //    useTestNG {
