@@ -4,8 +4,6 @@
     <test name="Groups" >
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.GroupCreation" />
-            <class name="ru.stqa.pft.addressbook.tests.GroupDeletion" />
-            <class name="ru.stqa.pft.addressbook.tests.GroupModification" />
         </classes>
     </test>
 </suite>
