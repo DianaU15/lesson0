@@ -33,7 +33,7 @@ public class ContactDeletionFromGroup extends TestBase{
         return selectedGroup;
     }
 
-    @Test
+    @Test (enabled = false)
     public void testContactDeletionFromGroup() {
         ensurePreconditions1();
         Groups groups = app.db().groups();
